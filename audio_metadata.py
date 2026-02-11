@@ -277,10 +277,10 @@ class AudioMetadataManager:
                 audio = MP3(file_path)
                 audio.add_tags()
             
-            # Очищаем существующие теги
-            audio.delete()
-            # Вызывает далее ошибку "an ID3 tag already exists", 
-            #audio.add_tags()
+            # Очищаем существующие теги (audio.delete() не работает)
+            audio.tags = None
+            # Добавляем пустые тэги для аудио
+            audio.add_tags()
             
             # Основные метаданные
             if track_data.get('title'):
